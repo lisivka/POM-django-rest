@@ -47,7 +47,14 @@
         {% for book in books %}
         <div class="col-md-4">
             <div id="logo" class="jumbotron">
-                <h4> {{ book.name }} </h4>
+                <h5><a href="{% url 'book_item' book.id %}"> {{ book.name }} </a></h5>
+                <p><b>
+                    {% for author in book.authors.all %}
+                    <small> <a href="{% url 'author_item' author.id %}"> {{ author.name }} {{author.surname}},</a>
+                    </small>
+
+                    {% endfor %}</b>
+                </p>
 
                 <p> {{ book.description }} </p>
                 <b><p> Total count :{{ book.count }} </p></b>

@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-
+from .views import  UserOrdersListView #UserListView,
 
 urlpatterns = [
     path('', views.users_new, name='users'),
@@ -11,4 +11,7 @@ urlpatterns = [
     path('users/<int:user_id>/', views.user_item, name='user_item'),
     path('delete/<int:user_id>', views.delete_user, name='delete_user'),
     path('reset', views.reset_passwd, name='reset_password'),
+    # path('user/list', UserListView.as_view()),
+    path('user/<user_id>/order/', UserOrdersListView.as_view()),
+
 ]

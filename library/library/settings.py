@@ -173,3 +173,8 @@ try:
     from .local_settings import *
 except ImportError:
     pass
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'PAGINATE_BY': 10
+}

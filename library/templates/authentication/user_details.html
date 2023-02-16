@@ -26,6 +26,7 @@
         {% if orders %}
         <table class="table table-hover table-bordered  table-striped">
             <tr>
+                <td>id</td>
                 <td>Book</td>
                 <td>Order creation</td>
                 <td>Must returned at</td>
@@ -33,6 +34,7 @@
             </tr>
             {% for order in orders %}
             <tr>
+                <td>{{ order.id }}</td>
                 <td><a href="{% url 'book_item' order.book.id %}"> {{ order.book.name }}</a></td>
                 <td>{{ order.created_at }}</td>
                 <td>{{ order.plated_end_at }}</td>

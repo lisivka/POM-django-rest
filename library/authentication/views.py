@@ -8,13 +8,34 @@ from .models import CustomUser
 
 # from book.models import Book
 # from .forms import BookForm
-from rest_framework import viewsets
-from .serializers import CustomUserSerializer
+from rest_framework import viewsets, generics
+from .serializers import UserSerializer, UserOrdersListSerializer  # ,UserListSerializer
 
 
-class CustomUserViewSet(viewsets.ModelViewSet):
+# for API
+class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
-    serializer_class = CustomUserSerializer
+    serializer_class = UserSerializer
+
+
+# class UserListView(generics.ListAPIView):
+#     serializer_class = UserListSerializer
+#     queryset = CustomUser.objects.all()
+
+class UserAllOrdersListView(generics.ListAPIView):
+    serializer_class = UserOrdersListSerializer
+
+    def get(self, request, *args, **kwargs):
+        self.queryset = Order.objects.filter(user=kwargs['user_id'], )
+        return self.list(request, *args, **kwargs)
+
+
+class UserOrdersListView(generics.ListAPIView):
+    serializer_class = UserOrdersListSerializer
+
+    def get(self, request, *args, **kwargs):
+        self.queryset = Order.objects.filter(user=kwargs['user_id'], id=kwargs["order_id"])
+        return self.list(request, *args, **kwargs)
 
 
 def user_item(request, user_id):

@@ -19,13 +19,13 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from author.views import AuthorViewSet
 from book.views import BookViewSet
-from authentication.views import CustomUserViewSet
+from authentication.views import UserViewSet, UserOrdersListView, UserAllOrdersListView  # , UserListView
 from order.views import OrderViewSet
 
 router = DefaultRouter()
 router.register(r'author', AuthorViewSet, basename='author')
 router.register(r'book', BookViewSet, basename='book')
-router.register(r'user', CustomUserViewSet, basename='user')
+router.register(r'user', UserViewSet, basename='user')
 router.register(r'order', OrderViewSet, basename='order')
 
 urlpatterns = [
@@ -40,6 +40,10 @@ urlpatterns = [
     path('auth/', include('authentication.urls')),
     path('users/', include('authentication.urls')),
     path('authentication/', include('authentication.urls')),
+
+    # for API
     path('api/v1/', include(router.urls)),
+    path('api/v1/user/<user_id>/order/', UserAllOrdersListView.as_view()),
+    path('api/v1/user/<user_id>/order/<order_id>', UserOrdersListView.as_view()),
 
 ]

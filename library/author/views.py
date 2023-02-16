@@ -8,6 +8,7 @@ from rest_framework.viewsets import ModelViewSet
 from .serializers import AuthorSerializer
 
 
+# for API
 class AuthorViewSet(ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer

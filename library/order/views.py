@@ -6,6 +6,14 @@ from order.forms import OrderForm
 from order.models import Order
 import datetime
 
+from rest_framework import viewsets
+from .serializers import OrderSerializer
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
 
 def index(request):  # название функции должно совпадать folder/file.html
     data = {'title': 'ORDER'}

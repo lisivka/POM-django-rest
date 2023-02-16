@@ -6,6 +6,16 @@ from order.models import Order
 from .forms import CreateUser, UpdateUser, LoginUser, ResetPassword
 from .models import CustomUser
 
+# from book.models import Book
+# from .forms import BookForm
+from rest_framework import viewsets
+from .serializers import CustomUserSerializer
+
+
+class CustomUserViewSet(viewsets.ModelViewSet):
+    queryset = CustomUser.objects.all()
+    serializer_class = CustomUserSerializer
+
 
 def user_item(request, user_id):
     user = CustomUser.objects.get(pk=user_id)
@@ -64,7 +74,6 @@ def users_new(request):
 
 
 def login_(request):
-
     form = LoginUser()
     title = 'Login'
     if request.method == 'GET':

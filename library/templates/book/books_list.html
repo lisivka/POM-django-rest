@@ -52,7 +52,7 @@
         {% for book in books %}
         <tr>
             <td scope="row">{{ book.id }}</td>
-            <td><a href="{% url 'book_item' book.id %}"> {{ book.name }} </a>,</td>
+            <td><a href="{% url 'book_item' book.id %}"> {{ book.name }} </a></td>
 
             <td>
                 {% for author in book.authors.all %}

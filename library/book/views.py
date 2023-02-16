@@ -3,11 +3,15 @@ from django.shortcuts import render, redirect
 from book.forms import BookForm
 from book.models import Book
 
+from .forms import BookForm
+from rest_framework import viewsets
+from .serializers import BookSerializer
 
-# def index(request):  # название функции должно совпадать folder/file.html
-#     data = {'title': 'BOOK'}
-#
-#     return render(request, 'book/index.html', context=data)
+
+class BookViewSet(viewsets.ModelViewSet):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
 
 def index(request):
     data = Book.objects.all().order_by('?')[:3]
@@ -80,7 +84,7 @@ def books_list(request):
 def book_item(request, book_id):
     book = Book.objects.get(pk=book_id)
     print(book)
-    context = {'book':book, 'title': book.name, 'id': book.id, 'authors': book.authors.all(),
+    context = {'book': book, 'title': book.name, 'id': book.id, 'authors': book.authors.all(),
                'count': book.count, 'name': book.name, 'description': book.description,
                'year': book.year, }
 

@@ -133,3 +133,4 @@ dmypy.json
 
 # that should not change!
 # used in self-checking
+/library/_db.sqlite3

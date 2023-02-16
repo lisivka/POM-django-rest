@@ -3,12 +3,7 @@ from django.urls import path, include
 
 from . import views
 
-from author.views import AuthorViewSet
-from rest_framework.routers import DefaultRouter
-# from rest_framework import routers
 
-router = DefaultRouter()
-router.register(r'author', AuthorViewSet, basename='author')
 
 urlpatterns = [
     # path('api/', include(router.urls)),

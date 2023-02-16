@@ -1,0 +1,18 @@
+<div id="logo" class="jumbotron">
+    <div class="container">
+        <!--        <div class="btn-group">-->
+        {% if user.role == 1 %}
+
+        <a class="btn btn-sm btn-primary" href="/books/add_book/0" role="button">Add new book | FORM&raquo;</a>
+        <a class="btn btn-sm btn-primary" href="/orders/add_order/0" role="button">Add new ORDER | FORM &raquo;</a>
+        <a class="btn btn-sm btn-primary" href="/authors/create/" role="button">Add new AUTHOR | FORM &raquo;</a>
+        <a class="btn btn-sm btn-primary" href="/auth/register/" role="button">Add new USER | FORM &raquo;</a>
+        <br>
+        {% endif %}
+
+        {% if search_text %}
+        <b> RESULT SEARCH: {{ search_text }}</b>
+        {% endif %}
+        <!--        </div>-->
+    </div>
+</div>

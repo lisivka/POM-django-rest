@@ -1,0 +1,50 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+Book Create
+{% endblock %}
+
+{% block content %}
+{% if user.role == 1 %}
+<div id="logo" class="jumbotron">
+    <div class="container">
+        <div class="btn-group">
+            <p><a class="btn btn-sm btn-primary" href="/books/create" role="button">Add new book &raquo;</a></p>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div id="logo" class="jumbotron">
+        <p></p>
+        <small><b>Book Create</b></small>
+        {% if user.role == 1 %}
+        <form method="POST"> {% csrf_token %}
+            <small>book name:</small>
+
+            <!--            <label for="name" class="sr-only">Name</label>-->
+            <input name='name' type="text" id="name" class="form-control" maxlength="128" required autofocus>
+
+            <small>book description:</small>
+            <!--            <label for="description" class="sr-only">Description</label>-->
+            <input name='description' type="text" id="description" class="form-control" maxlength="256" required
+                   autofocus>
+            <small>book count:</small>
+            <!--            <label for="count" class="sr-only">Count</label>-->
+            <input name='count' type="text" id="count" class="form-control" maxlength="10" required autofocus>
+
+            <small>books's authors:</small>
+
+            <p></p>
+            <input type='submit' class="btn btn-sm btn-success" value='Submit'/>
+            <!--        <button type="submit" class="btn btn-success">Add</button>
+                    <span>{{error}}</span> -->
+            {{ error }}
+        </form>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

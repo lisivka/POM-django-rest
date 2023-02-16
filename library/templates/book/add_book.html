@@ -1,0 +1,47 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+
+{% include  'layout/button_new.html' %}
+
+<div class="container">
+    <div id="logo" class="jumbotron">
+
+        <form action="" method='post' enctype="multipart/form-data" autocomplete="off">
+            {% csrf_token %}
+            <small><b><p>Book</p></b></small>
+            {% for field in form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                <div>{{ field }}</div>
+            </div>
+            {% endfor %}
+            {% if user.role == 1 %}
+            <input id="b1" type="submit" class="btn btn-sm btn-success" value="Submit"/>
+            <p></p>
+            <p><a id="b1" class="btn btn-sm btn-secondary" href="/book/books_list" role="button">Go to list</a></p>
+            {% endif %}
+        </form>
+    </div>
+</div>
+<style>
+    .form-group input {
+        width: 50%;
+        height: 30px;
+    }
+
+    .form-group textarea {
+        width: 100%;
+    }
+
+    #b1, #b2 {
+        width: 150px;
+    }
+</style>
+
+
+{% endblock %}
+
+

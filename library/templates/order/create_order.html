@@ -1,0 +1,47 @@
+{% extends 'layout/base.html' %}
+
+
+{% block content %}
+<div id="logo" class="jumbotron">
+    <div class="container">
+        <div class="btn-group">
+            <p><a class="btn btn-sm btn-primary" href="/authors/create" role="button">Add author &raquo;</a></p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div id="logo" class="jumbotron">
+        <p></p>
+        <small><b>Create Order</b></small>
+        <form method="POST"> {% csrf_token %}
+
+            <small> {{ user.id }} {{ user.email }} :</small>
+            <input name='userid' type="text" value={{ user.id }} hidden>
+
+            <!--            <input name='user2' type="text" id="name" class="form-control" maxlength="20" value="1212" autofocus>-->
+
+            <small>book:</small>
+
+            <small>data_time:</small><br>
+            <input name='data_time' type="datetime-local" id="data_time" value="2023-03-12 15:15:15">
+
+            <br>
+            <br> <select size="10" multiple name="bookid">
+                <option disabled>Select book</option>
+
+
+                {% for book in books %}
+                <option value="{{ book.id }}">{{ book.name }}</option>
+
+                {% endfor %}
+            </select>
+
+
+            <p></p>
+            <input type='submit' class="btn btn-sm btn-success" value='Submit'/>
+        </form>
+    </div>
+</div>
+{% endblock %}

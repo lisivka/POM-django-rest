@@ -1,0 +1,38 @@
+{% extends 'layout/base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block content %}
+
+{% include  'layout/button_new.html' %}
+
+<div class="container">
+    <div id="logo" class="jumbotron">
+        <br>
+        <h3>{{ title }}</h3>
+        <br>
+        {% include 'layout/messages.html' %}
+        <div class="container">
+
+                <form class="form-horizontal" method="POST">
+
+                    {% csrf_token %}
+                    {% for f in form%}
+                        <p><label class="control-label col-sm-2" for="{{f.id_for_label}}">{{ f.label }}:</label>{{f}} </p>
+                        <div class="form-error">{{f.errors}}</div>
+                    {% endfor %}
+
+
+
+                    <input type='submit' class="btn btn-sm btn-success" value='Submit'/>
+
+                </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

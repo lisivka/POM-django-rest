@@ -1,0 +1,23 @@
+<div id="logo" class="jumbotron">
+    <div class="container">
+        <!--        <div class="btn-group tg">-->
+<!--        {% if user.role == 1 %}-->
+<!--        <a class="btn btn-sm btn-primary" href="/books/create" role="button">Add new book &raquo;</a>-->
+<!--        {% endif %}-->
+<!--        {% if user.role == 1 %}-->
+<!--        <a class="btn btn-sm btn-primary" href="/books/add_book/0" role="button">Add new book | FORM &raquo;</a>-->
+<!--        {% endif %}-->
+<!--        <p></p>-->
+        <!--        </div>-->
+
+        <form method="POST" class="form-inline my-2 my-lg-0">{% csrf_token %}
+            <input name="search_name" class="form-control btn-sm mr-sm-2" type="text" placeholder="Search Name "
+                   aria-label="SearchNane">
+            <input name="search_id" class="form-control btn-sm mr-sm-2" type="text" placeholder="Search ID"
+                   aria-label="SearchID">
+            <button type="submit" class="btn btn-sm btn-outline-success my-2 my-sm-0">Search</button>
+        </form>
+
+
+    </div>
+</div>

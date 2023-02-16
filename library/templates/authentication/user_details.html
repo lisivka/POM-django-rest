@@ -1,0 +1,66 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+{{ name }} {{ surname}}
+{% endblock %}
+
+{% block content %}
+
+{% if user.role == 1 %}
+{% include  'layout/button_new.html' %}
+{% endif %}
+
+<div class="container">
+    <div id="logo" class="jumbotron">
+
+
+        User: {{ first_name }} {{ middle_name }} {{ last_name }}<br>
+
+        Email: {{ email }}<br>
+
+        Role: {{ role }}<br>
+
+        Active: {{ is_active }}<br>
+
+        <br>orders:
+        {% if orders %}
+        <table class="table table-hover table-bordered  table-striped">
+            <tr>
+                <td>Book</td>
+                <td>Order creation</td>
+                <td>Must returned at</td>
+                <td>Returned at</td>
+            </tr>
+            {% for order in orders %}
+            <tr>
+                <td><a href="{% url 'book_item' order.book.id %}"> {{ order.book.name }}</a></td>
+                <td>{{ order.created_at }}</td>
+                <td>{{ order.plated_end_at }}</td>
+                {% if order.end_at %}
+                <td>{{ order.end_at }}</td>
+                {% else %}
+                <td><b>Not returned!</b></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </table>
+        {%else%}
+        No orders.
+        {% endif %}
+
+        <!--        <a class="btn btn-sm btn-primary" href="/delete/{{ id }}/">Delete User</a>-->
+        <br><br>
+        <a class="btn btn-sm btn-primary" href="{% url 'update_user' user_id=id%}">Update User</a>
+        <a class="btn btn-danger btn-sm" href="{% url 'delete_user'  user_id=id%}">Delete User</a>
+
+        <br>
+        {% if request.user.id == id %}
+        <br>
+         <a class="link" href="{% url 'reset_password' %}">Create new password</a>
+        <br>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

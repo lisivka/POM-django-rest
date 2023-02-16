@@ -1,0 +1,58 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+
+<div id="logo" class="jumbotron">
+    <div class="container">
+        <div class="btn-group">
+            {% if user.role == 1 %}
+            <p><a class="btn btn-sm btn-primary" href="/authors/create" role="button">Add author &raquo;</a></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+
+        {% if authors %}
+        {% for author in authors %}
+        <div class="col-md-4">
+            <h4> {{ author.name }} {{author.surname }} </h4>
+            <p><small>id: {{ author.id }}</small></p>
+
+
+            <div class="btn-group">
+                <p><a class="btn btn-sm btn-secondary" href="{% url 'author_item' author.id %}" role="button">View
+                    &raquo;</a></p>
+                <p><a class="btn btn-sm btn-outline-secondary" href="{% url 'author_item' author.id %}"
+                      role="button">Edit
+                    &raquo;</a></p>
+                {% if user.role == 1 %}
+                <p><a class="btn btn-sm btn-danger" href="{% url 'delete_author' author.id %}" role="button">DELETE
+                    &raquo;</a></p>
+                {% endif %}
+            </div>
+        </div>
+
+        {% endfor %}
+
+        {% else %}
+        <p>No Authors!</p>
+        {% endif %}
+
+    </div>
+
+
+</div>
+
+<hr>
+
+</div> <!-- /container -->
+
+
+{% endblock %}

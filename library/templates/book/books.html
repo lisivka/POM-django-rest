@@ -1,0 +1,85 @@
+{% extends 'layout/base.html' %}
+
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block content %}
+{% include  'layout/button_new.html' %}
+
+
+<!--<div id="logo" class="jumbotron">-->
+<!--    <div class="container">-->
+<!--        &lt;!&ndash;        <div class="btn-group tg">&ndash;&gt;-->
+<!--        {% if user.role == 1 %}-->
+<!--        <a class="btn btn-sm btn-primary" href="/books/create" role="button">Add new book &raquo;</a>-->
+<!--        {% endif %}-->
+<!--        {% if user.role == 1 %}-->
+<!--        <a class="btn btn-sm btn-primary" href="/books/add_book/0" role="button">Add new book | FORM &raquo;</a>-->
+<!--        {% endif %}-->
+<!--        <p></p>-->
+<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+
+<!--        <form method="POST" class="form-inline my-2 my-lg-0">{% csrf_token %}-->
+<!--            <input name="search_name" class="form-control btn-sm mr-sm-2" type="text" placeholder="Search Name "-->
+<!--                   aria-label="SearchNane">-->
+<!--            <input name="search_id" class="form-control btn-sm mr-sm-2" type="text" placeholder="Search ID"-->
+<!--                   aria-label="SearchID">-->
+<!--            <button type="submit" class="btn btn-sm btn-outline-success my-2 my-sm-0">Search</button>-->
+<!--        </form>-->
+
+
+<!--    </div>-->
+<!--</div>-->
+
+
+<div class="container">
+
+
+    {% if search_text %}
+    RESULT SEARCH: {{ search_text }}
+    {% endif %}
+
+    <div class="row">
+
+        {% if books %}
+        {% for book in books %}
+        <div class="col-md-4">
+            <div id="logo" class="jumbotron">
+                <h4> {{ book.name }} </h4>
+
+                <p> {{ book.description }} </p>
+                <b><p> Total count :{{ book.count }} </p></b>
+                {{ book.year }} | {{ book.date_of_issue }}<br>
+                <small><p> id {{ book.id }}</p></small>
+                <!--            <div class="btn-group">-->
+                <!--                <p><a class="btn btn-sm btn-secondary" href="{% url 'book_item' book.id %}" role="button">View-->
+                <!--                    &raquo;</a></p>-->
+                <!--                <p><a class="btn btn-sm btn-outline-secondary" href="{% url 'book_item' book.id %}" role="button">Edit-->
+                <!--                    &raquo;</a></p>-->
+                <!--                {% if user.role == 1 %}-->
+                <!--                <p><a class="btn btn-sm btn-danger" href="{% url 'delete_book' book.id %}" role="button">DELETE-->
+                <!--                    &raquo;</a></p>-->
+                <!--                {% endif %}-->
+                <!--            </div>-->
+                {% include 'book/actions_book.html' %}
+            </div>
+        </div>
+
+        {% endfor %}
+
+        {% else %}
+        <p>No books!</p>
+        {% endif %}
+
+    </div>
+
+
+</div>
+
+<hr>
+
+</div> <!-- /container -->
+
+{% endblock content %}

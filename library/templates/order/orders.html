@@ -1,0 +1,68 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+Order List
+{% endblock %}
+
+{% block content %}
+<!--<div id="logo" class="jumbotron">-->
+<!--    <div class="container">-->
+<!--        &lt;!&ndash;        <div class="btn-group">&ndash;&gt;-->
+
+<!--        <a class="btn btn-sm btn-primary" href="orders/create" role="button">Add new ORDER &raquo;</a>-->
+<!--        <a class="btn btn-sm btn-primary" href="/orders/add_order/0" role="button">Add new ORDER | FORM &raquo;</a>-->
+
+<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
+<!--    </div>-->
+<!--</div>-->
+
+{% include  'layout/button_new.html' %}
+
+<div class="container">
+    <table class="table table-hover table-bordered  table-striped">
+        <tr>
+            <td>id</td>
+            <td>Book</td>
+            <td>User</td>
+            <td>Order creation</td>
+            <td>Must returned at</td>
+            <td>Returned at</td>
+            {% if user.role == 1 %}
+            <td>Actions</td>
+            <!--            <td>Delete</td>-->
+            {% endif %}
+        </tr>
+        {% if orders %}
+        {% for order in orders %}
+        <tr>
+            <td><a href="{% url 'order_item' order.id %}"> {{ order.id }} </a></td>
+            <td><a href="{% url 'book_item' order.book.id %}"> {{ order.book.name }}</a></td>
+            <td><a href="{% url 'user_item' order.user.id %}"> [{{ order.user.id }}] {{ order.user.first_name }} {{ order.user.last_name }} {{ order.user.email }}</a></td>
+            <td><a href="{% url 'order_item' order.id %}"> {{ order.created_at }}</a></td>
+            <td><a href="{% url 'order_item' order.id %}"> {{ order.plated_end_at }}</a></td>
+            {% if order.end_at %}
+            <td>{{ order.end_at }}</td>
+            {% else %}
+            <td><b>Not returned!</b></td>
+            {% endif %}
+            {% if user.role == 1 %}
+
+            <td>
+                <div class="btn-group">
+                    <p><a class="btn btn-sm btn-success" href="orders/close/{{order.id}}">Close</a>
+                    <p><a class="btn btn-sm btn-primary" href="{% url 'add_order' order.id %}"
+                          role="button">Edit</a>
+                    <p><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}"
+                          role="button">DELETE</a>
+                </div>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+        {% else %}
+        <p>No orders!</p>
+        {% endif %}
+    </table>
+
+</div>
+{% endblock %}

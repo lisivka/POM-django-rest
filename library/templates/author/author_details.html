@@ -1,0 +1,53 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+{{ name }} {{ surname}}
+{% endblock %}
+
+{% block content %}
+<!--<div id="logo" class="jumbotron">-->
+<!--    <div class="container">-->
+<!--        <div class="btn-group">-->
+<!--            {% if user.role == 1 %}-->
+<!--            <p><a class="btn btn-sm btn-primary" href="/authors/create" role="button">Add author &raquo;</a></p>-->
+<!--            {% endif %}-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+{% include  'layout/button_new.html' %}
+
+<div class="container">
+    <div id="logo" class="jumbotron">
+
+        <small><b> Аuthor Details</b></small><br>
+
+        Name: <b>{{ name }} {{ surname }}</b><br>
+        <p></p>
+        Patronymic: <b>{{ patronymic }}</b><br>
+        <p></p>
+        Books:
+        {% if books %}
+        {% for book in books %}
+        <a href="{% url 'book_item' book.id %}"> {{ book.name }} </a>,
+
+        {% endfor %}
+        <br><br>
+        {% else %}
+        No books.
+        {%endif%}
+
+        <div class="btn-group">
+            <p><a class="btn btn-sm btn-secondary" href="/author" role="button">Go back
+                &raquo;</a></p>
+             {% if user.role == 1 %}
+            <p><a class="btn btn-sm btn-outline-secondary" href="{% url 'author_update' id %}" role="button">Update
+                &raquo;</a></p>
+            <p><a class="btn btn-sm btn-danger" href="{% url 'author_delete' id %}" role="button">DELETE
+                &raquo;</a></p>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

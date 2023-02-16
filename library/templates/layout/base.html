@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %} <!-- Скопировали с Бутстрап -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Учебный проект библиотеки">
+    <meta name="author" content="Сергей Лисивка"> <!-- добавили -->
+    <meta name="generator" content="Jekyll v3.8.6">
+    <title>Библиотека - {% block title %}{% endblock title %}</title> <!-- добавили -->
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/jumbotron/">
+    <!-- добавили  c https://www.bootstrapcdn.com/ для HTML-->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="icon" href="{% static 'img/favicon.ico'%}">
+    <!--    <style>     </style> Перенесли в base.css и внизу подключаем -->
+    <link href="stylesheet" href="{% static 'css/base.css'%}">
+</head>
+<body>
+<!-- nav перенесли в nav.html -->
+<header>
+    {% include 'layout/nav.html'%}
+</header>
+<main role="main">
+    <!-- перенесли в index.html -->
+    {% block content%} {% endblock content%}
+</main>
+<footer class="container">
+    {% include 'layout/footer.html'%}
+</footer>
+
+<!--  из .js удалили slim  -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+
+<!-- Скопировали с Бутстрап -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"
+        integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

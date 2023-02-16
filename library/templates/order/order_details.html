@@ -1,0 +1,48 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+Order Details
+{% endblock %}
+
+{% block content %}
+<div id="logo" class="jumbotron">
+    <div class="container">
+        <div class="btn-group">
+            <!--            {% if user.role == 1 %}-->
+            <p><a class="btn btn-sm btn-primary" href="/orders/orders/create" role="button">Add order &raquo;</a></p>
+            <!--            {% endif %}-->
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div id="logo" class="jumbotron">
+
+        <small><b> Order Details</b></small><br>
+
+        USER name: <b> <a href="{% url 'user_item' user.id %}"> {{ user.first_name }} {{ user.last_name }} </a></b><br>
+        email: <a href="{% url 'user_item' user.id %}"> {{ user.email}}</a><br> <br>
+
+        books: <b> <a href="{% url 'book_item' book.id %}"> {{ book.name }} </a></b>
+        <br>
+
+        <br>Order creation: <b>{{ order.created_at }}</b>
+        <br>Must returned at: <b>{{ order.plated_end_at }}</b></br>
+        <br>Returned at:
+        {% if order.end_at %}
+        <b>{{ order.end_at }}</b>
+        {% else %}
+        <br><b>Not returned!</b>
+        {% endif %}
+        <br>
+        <br><h6><small>id: {{ order.id }}</small></h6>
+        <div class="btn-group">
+            <p><a class="btn btn-sm btn-secondary" href="/order" role="button">Go back &raquo;</a></p>
+            {% if user.role == 1 %}
+            <p><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}" role="button">DELETE
+                &raquo;</a></p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

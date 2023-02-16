@@ -1,0 +1,43 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block content %}
+
+{% include  'layout/button_new.html' %}
+
+<div class="container">
+    <div id="logo" class="jumbotron">
+        <small><b> Book Details</b></small><br>
+
+        <p> Author: <b>
+            {% for author in authors %}
+            <a href="{% url 'author_item' author.id %}"> {{ author.name }} {{author.surname}}</a>,
+            {% endfor %}</b>
+        </p>
+
+        <p>Name: <b> {{ name }}</b></p>
+        <p>{{ description }}</p>
+
+        <p> Year: {{ year }}</p>
+        <p> Date_of_issue: {{ book.date_of_issue }}</p>
+
+        <h5>book total : {{count}}</h5>
+        <h6><small>id: {{id}}</small></h6>
+
+        <div class="btn-group">
+            <p><a class="btn btn-sm btn-secondary" href="/book/books_list" role="button">Go to list &raquo;</a></p>
+            {% if user.role == 1 %}
+            <p><a class="btn btn-sm btn-primary" href="{% url 'add_book' id %}" role="button">Edit
+                &raquo;</a></p>
+            <p><a class="btn btn-sm btn-danger" href="{% url 'delete_book' id %}" role="button">DELETE &raquo;</a></p>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+
+
+{% endblock %}

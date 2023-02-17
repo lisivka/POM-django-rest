@@ -26,7 +26,9 @@ class UserAllOrdersListView(generics.ListAPIView):
     serializer_class = UserOrdersListSerializer
 
     def get(self, request, *args, **kwargs):
-        self.queryset = Order.objects.filter(user=kwargs['user_id'], )
+        user_id = str(kwargs["user_id"]).split(",")
+        # self.queryset = Order.objects.filter(user=kwargs['user_id'], )
+        self.queryset = Order.objects.filter(user__in=user_id, )
         return self.list(request, *args, **kwargs)
 
 
@@ -34,7 +36,8 @@ class UserOrdersListView(generics.ListAPIView):
     serializer_class = UserOrdersListSerializer
 
     def get(self, request, *args, **kwargs):
-        self.queryset = Order.objects.filter(user=kwargs['user_id'], id=kwargs["order_id"])
+        order_id = str(kwargs["order_id"]).split(",")
+        self.queryset = Order.objects.filter(user=kwargs['user_id'], id__in=order_id)
         return self.list(request, *args, **kwargs)
 
 

@@ -25,7 +25,7 @@ class UserSerializer(serializers.ModelSerializer):
         instance.middle_name = validated_data.get('middle_name', instance.middle_name)
         instance.email = validated_data.get('email', instance.email)
         instance.role = validated_data.get('role', instance.role)
-        instance.role = validated_data.get('role', instance.role)
+
         instance.is_active = validated_data.get('is_active', instance.is_active)
         instance.is_superuser = validated_data.get('is_superuser', instance.is_superuser)
         instance.is_staff = validated_data.get('is_staff', instance.is_staff)

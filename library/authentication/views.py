@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from order.models import Order
 from .forms import CreateUser, UpdateUser, LoginUser, ResetPassword
@@ -8,7 +10,7 @@ from .models import CustomUser
 
 # from book.models import Book
 # from .forms import BookForm
-from rest_framework import viewsets, generics
+from rest_framework import viewsets, generics, status
 from .serializers import UserSerializer, UserOrdersListSerializer  # ,UserListSerializer
 
 
@@ -17,10 +19,6 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
 
-
-# class UserListView(generics.ListAPIView):
-#     serializer_class = UserListSerializer
-#     queryset = CustomUser.objects.all()
 
 class UserAllOrdersListView(generics.ListAPIView):
     serializer_class = UserOrdersListSerializer
@@ -39,6 +37,15 @@ class UserOrdersListView(generics.ListAPIView):
         order_id = str(kwargs["order_id"]).split(",")
         self.queryset = Order.objects.filter(user=kwargs['user_id'], id__in=order_id)
         return self.list(request, *args, **kwargs)
+
+    # def post(self, request, user_id, format=None):
+    #     # serializer = CustomUserOrderSerializer(data=request.data)
+    #     serializer_class = UserOrdersListSerializer(data=request.data)
+    #
+    #     if serializer_class.is_valid():
+    #         serializer_class.save()
+    #         return Response(serializer_class.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer_class.errors, status=status.HTTP_400_BAD_REQUES)
 
 
 def user_item(request, user_id):

@@ -11,7 +11,5 @@ urlpatterns = [
     path('users/<int:user_id>/', views.user_item, name='user_item'),
     path('delete/<int:user_id>', views.delete_user, name='delete_user'),
     path('reset', views.reset_passwd, name='reset_password'),
-    # path('user/list', UserListView.as_view()),
-    path('user/<user_id>/order/', UserOrdersListView.as_view()),
 
 ]

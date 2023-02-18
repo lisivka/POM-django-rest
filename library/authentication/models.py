@@ -155,7 +155,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return False
 
     @staticmethod
-    def create(email, password, first_name=None, middle_name=None, last_name=None):
+    def create(email, password, first_name=None, middle_name=None, last_name=None,**kwargs):
         """
         :param first_name: first name of a user
         :type first_name: str

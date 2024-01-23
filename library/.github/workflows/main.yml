@@ -8,10 +8,10 @@ on:
     branches:
       - main
 
-  # По расписанию: каждый день в 0:00 UTC
-  # https://crontab.guru/every-day
-  schedule:
-    - cron: '0 0 * * *'
+#  # По расписанию: каждый день в 0:00 UTC
+#  # https://crontab.guru/every-day
+#  schedule:
+#    - cron: '0 0 * * *'
 
 # Задания
 jobs:
@@ -39,7 +39,7 @@ jobs:
       # Запустить нашу программу на Python
       # Этот шаг генерирует папку ./build
       - name: Run
-        run: python main.py
+        run: python ./library/manage.py runserver
 
       # Разместить содержимое ./build в корень ветки gh-pages текущего репо
       - name: Deploy

@@ -1,0 +1,52 @@
+# Название рабочего процесса
+name: Main Workflow (Python)
+
+# События, запускающие процесс
+on:
+  # Git push в ветку main
+  push:
+    branches:
+      - main
+
+  # По расписанию: каждый день в 0:00 UTC
+  # https://crontab.guru/every-day
+  schedule:
+    - cron: '0 0 * * *'
+
+# Задания
+jobs:
+  # Название задания
+  Main-Job-Python:
+    # Запускать на последней версии Ubuntu
+    runs-on: ubuntu-latest
+
+    # Шаги
+    steps:
+      # Загрузить код репозитория в окружение
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Установить Python 3.10
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      # Установить зависимости
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      # Запустить нашу программу на Python
+      # Этот шаг генерирует папку ./build
+      - name: Run
+        run: python main.py
+
+      # Разместить содержимое ./build в корень ветки gh-pages текущего репо
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # Передача токена рабочего прицесса во внешнее действие
+          # Не требует отдельной настройки секретов, токен передаётся автоматически
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Выбор папки билда
+          publish_dir: ./build

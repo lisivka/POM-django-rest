@@ -1,5 +1,7 @@
+<!--
 https://habr.com/ru/post/160117/
 # Django_REST
+-->
 
 Select a project (one of the team members) from the previous sprint and copy the project.
 
@@ -22,15 +24,20 @@ And record short video (2-10min) that shows functionality in action
 
 
 
+### Create and fire up your virtual environment:
 
+```commandline
+    python -m venv venv
+    venv\Scripts\activate
+```
 
-## install requirement project's packages
+### install requirement project's packages
 
 ```commandline
 pip install -r requirements.txt
 ```
 
-## Run project
+### Run project
 
 Go to the folder with manage.py file, run library
 ```commandline
@@ -40,3 +47,7 @@ python manage.py migrate
 ```commandline
 python manage.py runserver
 ```
+
+Go to the browser and enter the address:
+
+http://127.0.0.1:8000/api/v1/

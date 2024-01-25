@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 
-# from book.forms import BookForm
 from book.models import Book
 
 from .forms import BookForm
@@ -84,7 +83,6 @@ def books_list(request):
 
 def book_item(request, book_id):
     book = Book.objects.get(pk=book_id)
-    print(book)
     context = {'book': book, 'title': book.name, 'id': book.id, 'authors': book.authors.all(),
                'count': book.count, 'name': book.name, 'description': book.description,
                'year': book.year, }
@@ -98,7 +96,6 @@ def delete_book(request, pk):
 
 
 def create_book(request):
-    # context = {}
     error = ''
     new_book = Book()
     if request.method == 'POST':
@@ -109,11 +106,11 @@ def create_book(request):
         new_book = new_book.create(name, description, count)
         book_id = str(new_book.id)
         return redirect('/books/' + book_id)
-        # return redirect('/books/')
+
 
     context = {'book': new_book, 'error': error}
     return render(request, 'book/create_book.html', context)
-    # return render(request, 'book/books.html', context)
+
 
 
 def add_book(request, book_id=0):

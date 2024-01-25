@@ -4,24 +4,23 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Учебный проект библиотеки">
-    <meta name="author" content="Сергей Лисивка"> <!-- добавили -->
+    <meta name="description" content="Учбовий проект бібліотека">
+    <meta name="author" content="Сергій Лісівка"> <!-- добавили -->
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Библиотека - {% block title %}{% endblock title %}</title> <!-- добавили -->
+    <title>Бібліотека - {% block title %}{% endblock title %}</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.4/examples/jumbotron/">
-    <!-- добавили  c https://www.bootstrapcdn.com/ для HTML-->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="icon" href="{% static 'img/favicon.ico'%}">
-    <!--    <style>     </style> Перенесли в base.css и внизу подключаем -->
     <link href="stylesheet" href="{% static 'css/base.css'%}">
 </head>
 <body>
-<!-- nav перенесли в nav.html -->
+
 <header>
     {% include 'layout/nav.html'%}
 </header>
 <main role="main">
+    <br>
     <!-- перенесли в index.html -->
     {% block content%} {% endblock content%}
 </main>

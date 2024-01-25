@@ -1,31 +1,35 @@
 <small>
+    {% csrf_token %}
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container">
             <a class="navbar-brand" href="/">Lybrary</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
-                    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarsExampleDefault"
+                    aria-controls="navbarsExampleDefault" aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav mr-auto">
 
-<!--                    <li class="nav-item">-->
-<!--                        <a class="nav-link" href="/book">Books</a>-->
-<!--                    </li>-->
                     <li class="nav-item">
-                        <a class="nav-link" href="/book/books_list">Books List</a>
+                        <a class="nav-link" href="/book/books_list">Books</a>
                     </li>
-
                     <li class="nav-item">
                         <a class="nav-link" href="/author">Authors</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/order/">Orders</a>
                     </li>
-                     <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link" href="/api/v1/">API</a>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="/swagger/">Swagger</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/redoc/">Redoc</a>
+                    </li>
                 </ul>
 
                 <ul class="navbar-nav navbar-rigth">
@@ -35,53 +39,44 @@
                         <a class="nav-link" href="/auth/">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/admin/">Admin-Panel</a>
+                        <a class="nav-link" href="/admin/">Admin</a>
                     </li>
                     {% endif %}
-<!--                    <li class="nav-item">-->
-<!--                        -->
-<!--                     <a>class="nav-link"</a>-->
-<!--                    </li>-->
-
                     <li class="nav-item">
-                        <a class="nav-link" href="{% url 'user_item' request.user.id %}">Hello, {{request.user.email}}</a>
+                        <a class="nav-link"
+                           href="{% url 'user_item' request.user.id %}">Hello,
+                            {{request.user.email}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/authentication/logout">Exit</a>
+                        <a class="nav-link"
+                           href="/authentication/logout">Exit</a>
                     </li>
 
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="/authentication/login">Log in</a>
+                        <a class="nav-link" href="/authentication/login">Log
+                            in</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/authentication/register">Sing Up</a>
+                        <a class="nav-link" href="/authentication/register">Sing
+                            Up</a>
                     </li>
                     {% endif %}
                 </ul>
-                <!--
-                <li class="nav-item">
-                    <a class="nav-link" href="/authentication/sign_in">Вхід</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/authentication/">Регістрація</a>
-                </li>
-                -->
-
-
-<!--                <form class="form-inline my-2 my-lg-0">-->
-<!--                    <input name="data" class="form-control mr-sm-2" type="text" placeholder="Search"-->
-<!--                           aria-label="Search">-->
-<!--                    <button type="submit" class="btn btn-outline-success my-2 my-sm-0">Search</button>-->
-<!--                </form>-->
-
-                        <form method="POST" class="form-inline my-2 my-lg-0">{% csrf_token %}
-            <input name="search_name" class="form-control btn-sm mr-sm-2" type="text" placeholder="Search Name "
-                   aria-label="SearchNane">
-            <input name="search_id" class="form-control btn-sm mr-sm-2" type="text" placeholder="Search ID"
-                   aria-label="SearchID">
-            <button type="submit" class="btn btn-sm btn-outline-success my-2 my-sm-0">Search</button>
-        </form>
+                <form method="POST" class="form-inline my-2 my-lg-0">
+                    {% csrf_token %}
+                    <input name="search_name"
+                           class="form-control btn-sm mr-sm-2" type="text"
+                           placeholder="Search Name "
+                           aria-label="SearchNane">
+                    <input name="search_id" class="form-control btn-sm mr-sm-2"
+                           type="text" placeholder="Search ID"
+                           aria-label="SearchID">
+                    <button type="submit"
+                            class="btn btn-sm btn-outline-success my-2 my-sm-0">
+                        Search
+                    </button>
+                </form>
             </div>
         </div>
     </nav>

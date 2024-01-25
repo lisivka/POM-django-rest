@@ -19,14 +19,18 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from author.views import AuthorViewSet
 from book.views import BookViewSet
-from authentication.views import UserViewSet, UserOrdersListView, UserAllOrdersListView  # , UserListView
+from authentication.views import UserViewSet, UserOrdersListView
+from authentication.views import UserAllOrdersListView, UserAllOrdersViewSet
+from authentication.views import login_
 from order.views import OrderViewSet
+from .yasg import urlpatterns as swagger_doc_urls
 
 router = DefaultRouter()
 router.register(r'author', AuthorViewSet, basename='author')
 router.register(r'book', BookViewSet, basename='book')
 router.register(r'user', UserViewSet, basename='user')
 router.register(r'order', OrderViewSet, basename='order')
+router.register(r'user-orders', UserAllOrdersViewSet, basename='user-orders')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -40,10 +44,13 @@ urlpatterns = [
     path('auth/', include('authentication.urls')),
     path('users/', include('authentication.urls')),
     path('authentication/', include('authentication.urls')),
+    path('accounts/login/', login_), # for login swagger
 
     # for API
     path('api/v1/', include(router.urls)),
     path('api/v1/user/<user_id>/order/', UserAllOrdersListView.as_view()),
     path('api/v1/user/<user_id>/order/<order_id>', UserOrdersListView.as_view()),
-
 ]
+
+# Include URL patterns for API documentation
+urlpatterns += swagger_doc_urls

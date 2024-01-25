@@ -7,32 +7,6 @@
 
 {% include  'layout/button_new.html' %}
 
-<!--<div id="logo" class="jumbotron">-->
-<!--    <div class="container">-->
-<!--        &lt;!&ndash;        <div class="btn-group tg">&ndash;&gt;-->
-<!--        {% if user.role == 1 %}-->
-<!--        <a class="btn btn-sm btn-primary" href="/books/create" role="button">Add new book &raquo;</a>-->
-<!--        {% endif %}-->
-<!--        {% if user.role == 1 %}-->
-<!--        <a class="btn btn-sm btn-primary" href="/books/add_book/0" role="button">Add new book | FORM &raquo;</a>-->
-<!--        {% endif %}-->
-<!--        <p></p>-->
-<!--        &lt;!&ndash;        </div>&ndash;&gt;-->
-<!--        <form method="POST" class="form-inline my-2 my-lg-0">{% csrf_token %}-->
-<!--            <input name="search_name" class="form-control btn-sm mr-sm-2" type="text" placeholder="Search Name "-->
-<!--                   aria-label="SearchNane">-->
-<!--            <input name="search_id" class="form-control btn-sm mr-sm-2" type="text" placeholder="Search ID"-->
-<!--                   aria-label="SearchID">-->
-<!--            <button type="submit" class="btn btn-sm btn-outline-success my-2 my-sm-0">Search</button>-->
-<!--        </form>-->
-
-
-<!--    </div>-->
-<!--</div>-->
-
-<!---->
-
-
 <div class="container">
 
     {% if books %}
@@ -41,7 +15,6 @@
         <tr>
             <th scope="col"> id</th>
             <th scope="col">Name book</th>
-            <!--                    <th scope="col">Description</th>-->
             <th scope="col">Authors</th>
             <th scope="col">Count</th>
             <th scope="col"><small>Year | Date_of_issue</th>

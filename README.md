@@ -51,3 +51,7 @@ python manage.py runserver
 Go to the browser and enter the address:
 
 http://127.0.0.1:8000/api/v1/
+
+http://127.0.0.1:8000/swagger/
+
+http://127.0.0.1:8000/redoc/

@@ -25,8 +25,8 @@
                 <h5><a href="{% url 'book_item' book.id %}"> {{ book.name }} </a></h5>
                 <p><b>
                     {% for author in book.authors.all %}
-                    <small> <a href="{% url 'author_item' author.id %}"> {{
-                        author.name }} {{author.surname}},</a>
+                    <small> <a href="{% url 'author_item' author.id %}">
+                        {{ author.name }} {{author.surname}} {{ author.patronymic}},</a>
                     </small>
 
                     {% endfor %}</b>
